@@ -1,28 +1,40 @@
--- Inserindo dados na tabela Cliente
-INSERT INTO Cliente (nome, telefone, email)
-VALUES
-('João Silva', '11999990001', 'joao@gmail.com'),
-('Carlos Mendes', '11999990002', 'carlos@gmail.com'),
-('Rafael Souza', '11999990003', 'rafael@gmail.com');
+-- ===========================
+-- CRIAÇÃO DAS TABELAS
+-- ===========================
 
--- Inserindo dados na tabela Barbeiro
-INSERT INTO Barbeiro (nome, especialidade, salario)
-VALUES
-('Marcos Andrade', 'Corte Fade', 2500.00),
-('Pedro Lima', 'Barba e Sobrancelha', 2300.00),
-('Henrique Santos', 'Corte e Barba', 2600.00);
+-- Criar tabela Cliente
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+);
 
--- Inserindo dados na tabela Serviço
-INSERT INTO Servico (descricao, preco, duracao)
-VALUES
-('Corte de Cabelo', 35.00, 30),
-('Barba Completa', 25.00, 20),
-('Sobrancelha', 15.00, 10),
-('Combo Corte + Barba', 50.00, 45);
+-- Criar tabela Barbeiro
+CREATE TABLE Barbeiro (
+    id_barbeiro INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especialidade VARCHAR(100),
+    salario DECIMAL(10,2)
+);
 
--- Inserindo dados na tabela Agendamento
-INSERT INTO Agendamento (id_cliente, id_barbeiro, id_servico, data_hora)
-VALUES
-(1, 1, 1, '2025-02-10 14:00:00'),
-(2, 3, 4, '2025-02-11 16:00:00'),
-(3, 2, 2, '2025-02-12 10:00:00');
+-- Criar tabela Servico
+CREATE TABLE Servico (
+    id_servico INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    duracao INT NOT NULL  -- duração em minutos
+);
+
+-- Criar tabela Agendamento
+CREATE TABLE Agendamento (
+    id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_barbeiro INT NOT NULL,
+    id_servico INT NOT NULL,
+    data_hora DATETIME NOT NULL,
+
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
+    FOREIGN KEY (id_barbeiro) REFERENCES Barbeiro(id_barbeiro),
+    FOREIGN KEY (id_servico) REFERENCES Servico(id_servico)
+);
