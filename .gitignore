@@ -1,0 +1,35 @@
+# ----------------------------
+# Gitignore para projetos SQL
+# ----------------------------
+
+# Arquivos temporários do sistema
+Thumbs.db
+.DS_Store
+
+# Pastas de backup
+backup/
+temp/
+tmp/
+
+# Arquivos de IDEs e editores
+.idea/
+.vscode/
+*.iml
+
+# Arquivos de log
+*.log
+
+# Arquivos de banco gerados automaticamente
+*.sql~
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos exportados automaticamente
+*.bak
+*.old
+
+# Arquivos de sistema (Windows / Mac / Linux)
+Desktop.ini
+*.swp
+*.swo
